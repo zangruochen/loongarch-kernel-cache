@@ -1,0 +1,27 @@
+From 98719e80c5e58bfc748591e1fe91f8fd6dd7ff99 Mon Sep 17 00:00:00 2001
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Tue, 15 Oct 2019 22:55:17 -0400
+Subject: [PATCH] crtsavres: fixups for 5.4+
+
+Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
+---
+ arch/powerpc/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/powerpc/Makefile b/arch/powerpc/Makefile
+index 642e21b3cf21..926b489370ba 100644
+--- a/arch/powerpc/Makefile
++++ b/arch/powerpc/Makefile
+@@ -426,6 +426,9 @@ vdso_prepare: prepare0
+ 		$(build)=arch/powerpc/kernel/vdso include/generated/vdso64-offsets.h)
+ endif
+ 
++arch/powerpc/lib/crtsavres.o: arch/powerpc/lib/crtsavres.S
++	$(Q)$(MAKE) $(build)=arch/powerpc/lib arch/powerpc/lib/crtsavres.o
++
+ archprepare: checkbin arch/powerpc/lib/crtsavres.o
+ 
+ archheaders:
+-- 
+2.19.1
+
